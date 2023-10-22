@@ -21,9 +21,11 @@ public class JsonKafkaProducer {
 
     public void sendMessage(User data) {
 
-        LOGGER.info(String.format("Message sent -> %s", data,toString()));
+        LOGGER.info(String.format("Message sent -> %s", data.toString()));
 
-        Message<User> message = MessageBuilder.withPayload(data).setHeader(KafkaHeaders.TOPIC, "javaguids").build();
+        Message<User> message = MessageBuilder.withPayload(data)
+                .setHeader(KafkaHeaders.TOPIC,
+                "javaguides_json").build();
 
         kafkaTemplate.send(message);
 
